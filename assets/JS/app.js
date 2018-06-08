@@ -9,35 +9,15 @@ let faceId;
 let aFaceId = '&face_tokens=' + faceId;
 let dQueryURL = dBaseURL + apiKey + apiSecret + dImageURL;
 const emotion = "&return_attributes=emotion";
-// let aQueryURL = aBaseURL + aApiKey + aApiSecret + aFaceId;
 
-// }).then(function(aResponse){
+////// ID's for HTML tags //////
+// USER INPUT URLS: #user-input1 #user-input-2
+// EMOTION DROPDOWN: #emotion-dropdown
+// USER IMAGES: #image-1 #image-2
+// FINAL SUBMIT BUTTON: #play-button
+// SCORES: wins-1 wins-2 losses-1 lossed-2
 
-//         console.log(aResponse.faces[0].face_token);
-//     // console.log("id", response.request.image_id);
-//     faceId = aResponse.faces[0].face_token;
-
-/* $.ajax({
-  url: dQueryURL,
-  method: "POST",
-  success: function () {
-    $.ajax({
-      url: aQueryURL,
-      method: "POST"
-    })
-      .then(function (aResponse) {
-        console.log("Analysis will happen to: ", faceId);
-        var happinessResponse = aResponse.faces[0].attributes.emotion.happiness;
-        console.log(happinessResponse);
-      }
-      ).then(function (dResponse) {
-        console.log(dResponse)
-        faceId = '&face_tokens=' + dResponse.faces[0].face_token;
-        let aQueryURL = aBaseURL + aApiKey + aApiSecret + aFaceId;
-      }
-      )
-  }
-}); */
+$(document).ready(function() {
 
 initialAjax();
 
@@ -68,5 +48,7 @@ function faceData(response) {
     console.log("response", response);
 }
 
+// Closing brackets for jQuery document ready below
+});
 
 // aResponse.faces[0].attributes.emotion.happiness
