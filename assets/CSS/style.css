@@ -1,5 +1,16 @@
-#api-testing {
-    height: 500px;;
-    width: auto;
-    border: blue solid 2pt;
+td {
+    font-size: 10pt;
+    border: lightgray 1pt solid;
+
+}
+
+th {
+    font-weight: 800;
+    border: lightgray 1pt solid;
+
+}
+
+table {
+    border: lightgray 1pt solid;
+
 }

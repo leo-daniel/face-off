@@ -19,53 +19,97 @@
 </head>
 
 <body>
+<div class="container text-center">
+    <div class="row justify-content-between my-3">
+        <div class="col-6">
+            <h2>Player 1</h2>
+        </div>
+        <div class="col-6">
+            <h2>Player 2</h2>
+        </div>
+    </div>
+    <div class="row justify-content-between my-3">
+        <div class="col-6">
+            <div class="input-group mb-3">
+            <input id="user-input-1" type="text" class="form-control" placeholder="Enter Player 1 Image URL" aria-label="Player 1 URL" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button id="submit-1" class="btn btn-outline-secondary" type="button">Submit</button>
+            </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="input-group mb-3">
+            <input id="user-input-2" type="text" class="form-control" placeholder="Enter Player 2 Image URL" aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button id="submit-1" class="btn btn-outline-secondary" type="button">Submit</button>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center my-3">
+        <div class="col-6">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect01">Emotions</label>
+                  </div>
+                  <select class="custom-select" id="emotion-dropdown">
+                    <option selected>Select an emotion...</option>
+                    <option value="happiness">Happiness</option>
+                    <option value="sadness">Sadness</option>
+                    <option value="anger">Anger</option>
+                    <!-- Add more emotions later -->
+                  </select>
+                </div>
+        </div>
+    </div>
+    <div class="row my-3">
+        <div class="col-6">
+            <img id="image-1" class="border" src="http://via.placeholder.com/200" alt="Player 1 Image" height="200px" width="200px">
+        </div>
+        <div class="col-6">
+                <img id="image-1" class="border" src="http://via.placeholder.com/200" alt="Player 2 Image" height="200px" width="200px">
+            </div>
+    </div>
+    <div class="row justify-content-center my-3">
+        <div class="col-6">
+                <button id="play-button" type="button" class="btn btn-primary btn-lg">PLAY</button>
+        </div>
+    </div>
+    <div class="row justify-content-center my-3">
+        <div class="col-6">
+                <table class="table">
+                        <thead>
+                          <tr>
+                            <th id="leaderboard" scope="col">Leaderboard</th>
+                            <th scope="col">Player 1</th>
+                            <th scope="col">Player 2</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                                <tr>
+                                  <th scope="row">Wins</th>
+                                  <td id="wins-1">0</td>
+                                  <td id="wins-2">0</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">Losses</th>
+                                  <td id="losses-1">0</td>
+                                  <td id="losses-2">0</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">Highest Emotion Score</th>
+                                  <td id="highest-score-1">Happiness: 99%</td>
+                                  <td id="highest-score-1">Anger 78%</td>
+                                </tr>                                                                    
+                        </tbody>
+                      </table>
+        </div>
+    </div>
+</div>
 
-  <script>
 
-    $(document).ready(function () {
-
-      // Uploading image with preview (Probably won't be using - atleast for MVP)
-      $(document).on('change', '.btn-file :file', function () {
-        var input = $(this),
-          label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-        input.trigger('fileselect', [label]);
-      });
-
-      $('.btn-file :file').on('fileselect', function (event, label) {
-
-        var input = $(this).parents('.input-group').find(':text'),
-          log = label;
-
-        if (input.length) {
-          input.val(log);
-        } else {
-          if (log) alert(log);
-        }
-
-      });
-      function readURL(input) {
-        if (input.files && input.files[0]) {
-          var reader = new FileReader();
-
-          reader.onload = function (e) {
-            $('#img-upload').attr('src', e.target.result);
-          }
-
-          reader.readAsDataURL(input.files[0]);
-        }
-      }
-      $("#imgInp").change(function () {
-        readURL(this);
-      });
-
-    });
-
-
-
-  </script>
+  <!-- link firebase below before main js script -->
   <script src="assets/JS/app.js"></script>
-
-
 </body>
 
 </html>
