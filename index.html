@@ -37,6 +37,7 @@
             </div>
             </div>
         </div>
+        
         <div class="col-6">
             <div class="input-group mb-3">
             <input id="user-input-2" type="text" class="form-control" placeholder="Enter Player 2 Image URL" aria-label="Recipient's username" aria-describedby="basic-addon2">
@@ -66,18 +67,51 @@
                 </div>
         </div>
     </div>
-    <div class="row my-3">
-        <div class="col-6">
+    <div class="row my-3 justify justify-content-center text-center">
+        <div class="col-4">
             <img id="image-1" class="border" src="http://via.placeholder.com/200" alt="Player 1 Image" height="200px" width="200px">
+
+            <p class='my-3'><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#player-scores-1" aria-expanded="false" aria-controls="collapseExample">
+                    Player 1 Scores
+            </button> </p>
+                <div class="collapse" id="player-scores-1">
+                  <div class="card card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">Anger: <span id="anger-1">0</span>%</li>
+                        <li class="list-group-item">Disgust: <span id="disgust-1">0</span>%</li>
+                        <li class="list-group-item">Fear: <span id="fear-1">0</span>%</li>
+                        <li class="list-group-item">Happiness: <span id="happiness-1">0</span>%</li>
+                        <li class="list-group-item">Neutral: <span id="neutral-1">0</span>%</li>
+                        <li class="list-group-item">Sadness: <span id="sadness-1">0</span>%</li>
+                        <li class="list-group-item">Surprise: <span id="surprise-1">0</span>%</li>
+                    </ul>
+                  </div>
+                </div>
         </div>
-        <div class="col-6">
-            <img id="image-2" class="border" src="http://via.placeholder.com/200" alt="Player 2 Image" height="200px" width="200px">
-        </div>
-    </div>
-    <div class="row justify-content-center my-3">
-        <div class="col-6">
+        <div class="col-2">
                 <button id="play-button" type="button" class="btn btn-primary btn-lg">PLAY</button>
         </div>
+        <div class="col-4">
+            <img id="image-2" class="border" src="http://via.placeholder.com/200" alt="Player 2 Image" height="200px" width="200px">
+
+             <p class='my-3'><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#player-scores-2" aria-expanded="false" aria-controls="collapseExample">
+                    Player 2 Scores
+            </button> </p>
+                <div class="collapse" id="player-scores-2">
+                  <div class="card card-body">
+                    <ul class="list-group">
+                            <li class="list-group-item">Anger: <span id="anger-2">0</span>%</li>
+                            <li class="list-group-item">Disgust: <span id="disgust-2">0</span>%</li>
+                            <li class="list-group-item">Fear: <span id="fear-2">0</span>%</li>
+                            <li class="list-group-item">Happiness: <span id="happiness-2">0</span>%</li>
+                            <li class="list-group-item">Neutral: <span id="neutral-2">0</span>%</li>
+                            <li class="list-group-item">Sadness: <span id="sadness-2">0</span>%</li>
+                            <li class="list-group-item">Surprise: <span id="surprise-2">0</span>%</li>
+                    </ul>
+                  </div>
+                </div>
+        </div>
+    </div>
     </div>
     <div class="row justify-content-center my-3">
         <div class="col-6">
@@ -99,12 +133,7 @@
                                   <th scope="row">Losses</th>
                                   <td id="losses-1">0</td>
                                   <td id="losses-2">0</td>
-                                </tr>
-                                <tr>
-                                  <th scope="row">Highest Emotion Score</th>
-                                  <td id="highest-score-1">Happiness: 99%</td>
-                                  <td id="highest-score-1">Anger 78%</td>
-                                </tr>                                                                    
+                                </tr>                                                             
                         </tbody>
                       </table>
         </div>
