@@ -18,3 +18,7 @@ table {
 #scores {
     border: none;
 }
+
+li {
+    text-align: left;
+}

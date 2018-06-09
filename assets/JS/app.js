@@ -137,6 +137,29 @@ function updateScore() {
         console.log("player1 wins", player2);
         updateHTML();
     }
+
+    //update firebase player objects
+    database.ref().set({
+        player1: {  anger: player1.emotion.anger,
+                    digsgust: player1.emotion.disgust,
+                    fear: player1.emotion.fear,
+                    happiness: player1.emotion.happiness,
+                    neutral: player1.emotion.neutral,
+                    sadness: player1.emotion.sadness,
+                    surprise: player1.emotion.surprise
+                 },
+        player2: {  anger: player2.emotion.anger,
+                    digsgust: player2.emotion.disgust,
+                    fear: player2.emotion.fear,
+                    happiness: player2.emotion.happiness,
+                    neutral: player2.emotion.neutral,
+                    sadness: player2.emotion.sadness,
+                    surprise: player2.emotion.surprise
+                } ,
+        stats: { 
+
+        }          
+    });
 }
 
 function updateHTML(player) {
