@@ -14,3 +14,7 @@ table {
     border: lightgray 1pt solid;
 
 }
+
+#scores {
+    border: none;
+}

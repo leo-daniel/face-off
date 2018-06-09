@@ -15,14 +15,24 @@ const database = firebase.database();
 // Sets object values to 0
 function resetDatabase() {
     database.ref().set({
-        player1: { wins: 0,
-                    losses: 0,
-                    score: 0,
-                    stats: 0 },
-        player2: { wins: 0,
-                    losses: 0,
-                    score: 0,
-                    stats: 0 }
+        player1: {  anger: 0,
+                    digsgust: 0,
+                    fear: 0,
+                    happiness: 0,
+                    neutral: 0,
+                    sadness: 0,
+                    surprise: 0,
+                    wins: 0,
+                    losses: 0 },
+        player2: {  anger: 0,
+                    digsgust: 0,
+                    fear: 0,
+                    happiness: 0,
+                    neutral: 0,
+                    sadness: 0,
+                    surprise: 0,
+                    wins: 0,
+                    losses: 0 }           
     });
 }
 
