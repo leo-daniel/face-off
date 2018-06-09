@@ -26,7 +26,13 @@ function resetDatabase() {
     });
 }
 
+
+
 // Accessing player1 object, for example number of wins
 database.ref().on('value', function(snap) {
     console.log(snap.val().player1.wins);
 })
+
+// Call reset to set player objects, remove this call when we wanting persistence - otherwise starting will overwrite
+resetDatabase();
+
