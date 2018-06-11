@@ -131,7 +131,7 @@ function updateScore() {
         database.ref().once('value', function(snap){
             database.ref().update({
                 player1: {  anger: player1.emotion.anger,
-                    digsgust: player1.emotion.disgust,
+                    disgust: player1.emotion.disgust,
                     fear: player1.emotion.fear,
                     happiness: player1.emotion.happiness,
                     neutral: player1.emotion.neutral,
@@ -141,7 +141,7 @@ function updateScore() {
                     losses: snap.val().player1.losses + 0
                  }, 
                  player2: {  anger: player2.emotion.anger,
-                    digsgust: player2.emotion.disgust,
+                    disgust: player2.emotion.disgust,
                     fear: player2.emotion.fear,
                     happiness: player2.emotion.happiness,
                     neutral: player2.emotion.neutral,
@@ -161,7 +161,7 @@ function updateScore() {
         database.ref().once('value', function(snap){
             database.ref().update({
                 player1: {  anger: player1.emotion.anger,
-                    digsgust: player1.emotion.disgust,
+                    dissgust: player1.emotion.disgust,
                     fear: player1.emotion.fear,
                     happiness: player1.emotion.happiness,
                     neutral: player1.emotion.neutral,
@@ -171,7 +171,7 @@ function updateScore() {
                     losses: snap.val().player1.losses + 1
                  }, 
                  player2: {  anger: player2.emotion.anger,
-                    digsgust: player2.emotion.disgust,
+                    dissgust: player2.emotion.disgust,
                     fear: player2.emotion.fear,
                     happiness: player2.emotion.happiness,
                     neutral: player2.emotion.neutral,
@@ -264,11 +264,12 @@ $(document).on('click', '#submit-1', function (e) {
     
     //sets emotion from dropdown, default one right now is anger
     emotion = $('#emotion-dropdown :selected').text();
-   
+    var emotionNotSelected = 'Select an emotion...';
+
     // put ajaxSwitch error handling here
-    if (go1 && go2 && submit) {
+    if (go1 && go2 && submit && emotion != emotionNotSelected) {
         initialAjax(ajaxSwitch);
     }else{
-        alert('Be-Boop it looks like you did not submit two URLs');
+        alert('Please submit two images and select an emotion');
     }
 })

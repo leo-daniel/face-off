@@ -11,6 +11,11 @@
   firebase.initializeApp(config);
 
 const database = firebase.database();
+const storageRef = firebase.storage().ref();
+var imagesRef1 = storageRef.child('images1.jpg');
+var imagesRef2 = storageRef.child('images2.jpg');
+var uImageURL1 = undefined;
+var uImageURL2 = undefined;
 
 // display persitent scores
 database.ref().on('value', function(snap) {
@@ -23,6 +28,51 @@ database.ref().on('value', function(snap) {
     const losses2 = $('#losses-2');
         losses2.text(snap.val().player2.losses);
 })
+
+// Uploading files to firebase
+
+$(document).on('click', '#upload-submit-1', function(e) {
+    e.preventDefault;
+    go1 = true;
+
+    const file1 = $("#upload-1").get(0).files[0];
+
+    const metadata1 = { contentType: file1.type };
+
+    const task = imagesRef1.put(file1, metadata1);
+
+    const image = storageRef.child('images1.jpg');
+    const urlPromise = image.getDownloadURL();
+
+    urlPromise.then(url => {
+        $("#image-1").attr('src', url);
+        player1.url = url;
+    });
+    
+
+}).on('click', '#upload-submit-2', function(e) {
+    e.preventDefault;
+    go2 = true;
+    console.log('hi')
+    // gets uploaded file
+    const file2 = $("#upload-2").get(0).files[0];
+
+    // sets metadata
+    const metadata2 = { contentType: file2.type };
+
+    // uploads the image
+    const task = imagesRef2.put(file2, metadata2);
+
+    const image = storageRef.child('images2.jpg');
+    const urlPromise = image.getDownloadURL();
+
+    urlPromise.then(url => {
+        $("#image-2").attr('src', url);
+        player2.url = url;
+    });
+
+})
+
 
 // Sets object values to 0
 // function resetDatabase() {
