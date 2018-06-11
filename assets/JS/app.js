@@ -161,7 +161,7 @@ function updateScore() {
         database.ref().once('value', function(snap){
             database.ref().update({
                 player1: {  anger: player1.emotion.anger,
-                    dissgust: player1.emotion.disgust,
+                    disgust: player1.emotion.disgust,
                     fear: player1.emotion.fear,
                     happiness: player1.emotion.happiness,
                     neutral: player1.emotion.neutral,
@@ -171,7 +171,7 @@ function updateScore() {
                     losses: snap.val().player1.losses + 1
                  }, 
                  player2: {  anger: player2.emotion.anger,
-                    dissgust: player2.emotion.disgust,
+                    disgust: player2.emotion.disgust,
                     fear: player2.emotion.fear,
                     happiness: player2.emotion.happiness,
                     neutral: player2.emotion.neutral,
