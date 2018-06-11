@@ -32,10 +32,15 @@
         <div class="col-6">
             <div class="input-group mb-3">
             <input id="user-input-1" type="text" class="form-control" placeholder="Enter Player 1 Image URL" aria-label="Player 1 URL" aria-describedby="basic-addon2">
+            
             <div class="input-group-append">
+
                 <button id="submit-1" class="btn btn-outline-secondary" type="button">Submit</button>
             </div>
             </div>
+            <form>
+                <input type="file" name="file" accept="image/*" onchange="uploadFile">
+            </form>
         </div>
         
         <div class="col-6">

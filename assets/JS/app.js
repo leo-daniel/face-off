@@ -53,6 +53,42 @@ var go2 = false;
 //https://s-i.huffpost.com/gen/2776836/images/o-ANGER-facebook.jpg
 //https://flavorwire.files.wordpress.com/2015/09/o-bill-facebook.jpg?w=1920
 
+//--------------------------------------------------------------------------
+// Dropbox
+//--------------------------------------------------------------------------
+var dropboxToken = '82kft8aj5pur59t'; 
+
+var xhr = new XMLHttpRequest();
+ 
+xhr.upload.onprogress = function(evt) {
+  var percentComplete = parseInt(100.0 * evt.loaded / evt.total);
+  // Upload in progress. Do something here with the percent complete.
+};
+ 
+xhr.onload = function() {
+  if (xhr.status === 200) {
+    var fileInfo = JSON.parse(xhr.response);
+    // Upload succeeded. Do something here with the file info.
+  }
+  else {
+    var errorMessage = xhr.response || 'Unable to upload file';
+    // Upload failed. Do something here with the error.
+  }
+};
+ 
+xhr.open('POST', '<a class="vglnk" href="https://content.dropboxapi.com/2/files/upload" rel="nofollow"><span>https</span><span>://</span><span>content</span><span>.</span><span>dropboxapi</span><span>.</span><span>com</span><span>/</span><span>2</span><span>/</span><span>files</span><span>/</span><span>upload</span></a>');
+xhr.setRequestHeader('Authorization', 'Bearer ' + dropboxToken);
+xhr.setRequestHeader('Content-Type', 'application/octet-stream');
+xhr.setRequestHeader('Dropbox-API-Arg', JSON.stringify({
+  path: '/' +  file.name,
+  mode: 'add',
+  autorename: true,
+  mute: false
+}));
+ 
+xhr.send(file);
+
+
 
 //--------------------------------------------------------------------------
 // Functions
