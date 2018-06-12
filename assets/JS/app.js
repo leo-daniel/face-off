@@ -17,7 +17,7 @@ let faceId;
 let aFaceId = '&face_tokens=' + faceId;
 
 
-//the emotion attribute will give us an array of emotion corr values 
+//the emotion attribute will give us an array of emotion corr values
 let attribute = 'emotion';
 let aAttribute = '&return_attributes=' + attribute;
 
@@ -28,7 +28,7 @@ let dQueryURL = '';
 let aQueryURL = aBaseURL + aApiKey + aApiSecret + aFaceId;
 
 
-//handling for different players 
+//handling for different players
 let ajaxSwitch = false;
 
 //player objects
@@ -63,7 +63,7 @@ function initialAjax(ajaxSwitch) {
 
     //handles which image URL to call
     if (!ajaxSwitch) {
-        //uses player 1 url 
+        //uses player 1 url
         dImageURL = 'image_url=' + player1.url
         console.log(dImageURL);
     } else {
@@ -100,7 +100,7 @@ function faceData(response) {
     console.log("resposne", response);
 
     if (!ajaxSwitch) {
-        // save the emotion score obj to player1     
+        // save the emotion score obj to player1
         var emotionObj = response.faces[0].attributes.emotion;
         player1.emotion = emotionObj;
         //changes to player2
@@ -109,7 +109,7 @@ function faceData(response) {
             initialAjax(ajaxSwitch);
         }
     } else {
-        // save the emotion score obj to player1     
+        // save the emotion score obj to player1
         var emotionObj = response.faces[0].attributes.emotion;
         player2.emotion = emotionObj;
         updateScore();
@@ -128,9 +128,10 @@ function updateScore() {
         player1.wins++;
         player2.losses++;
         console.log("player1 wins", player1);
-        database.ref().once('value', function(snap){
+        database.ref().once('value', function (snap) {
             database.ref().update({
-                player1: {  anger: player1.emotion.anger,
+                player1: {
+                    anger: player1.emotion.anger,
                     disgust: player1.emotion.disgust,
                     fear: player1.emotion.fear,
                     happiness: player1.emotion.happiness,
@@ -139,8 +140,9 @@ function updateScore() {
                     surprise: player1.emotion.surprise,
                     wins: snap.val().player1.wins + 1,
                     losses: snap.val().player1.losses + 0
-                 }, 
-                 player2: {  anger: player2.emotion.anger,
+                },
+                player2: {
+                    anger: player2.emotion.anger,
                     disgust: player2.emotion.disgust,
                     fear: player2.emotion.fear,
                     happiness: player2.emotion.happiness,
@@ -149,7 +151,7 @@ function updateScore() {
                     surprise: player2.emotion.surprise,
                     wins: snap.val().player2.wins + 0,
                     losses: snap.val().player2.losses + 1
-                } 
+                }
             })
         })
 
@@ -158,9 +160,10 @@ function updateScore() {
         player2.wins++;
         player1.losses++;
         console.log("player2 wins", player2);
-        database.ref().once('value', function(snap){
+        database.ref().once('value', function (snap) {
             database.ref().update({
-                player1: {  anger: player1.emotion.anger,
+                player1: {
+                    anger: player1.emotion.anger,
                     disgust: player1.emotion.disgust,
                     fear: player1.emotion.fear,
                     happiness: player1.emotion.happiness,
@@ -169,8 +172,9 @@ function updateScore() {
                     surprise: player1.emotion.surprise,
                     wins: snap.val().player1.wins + 0,
                     losses: snap.val().player1.losses + 1
-                 }, 
-                 player2: {  anger: player2.emotion.anger,
+                },
+                player2: {
+                    anger: player2.emotion.anger,
                     disgust: player2.emotion.disgust,
                     fear: player2.emotion.fear,
                     happiness: player2.emotion.happiness,
@@ -179,28 +183,28 @@ function updateScore() {
                     surprise: player2.emotion.surprise,
                     wins: snap.val().player2.wins + 1,
                     losses: snap.val().player2.losses + 0
-                } 
+                }
             })
         })
     }
 
-        // player 1 emotion scores displayed from firebase
-        $('#anger-1').text(player1.emotion.anger);
-        $('#disgust-1').text(player1.emotion.disgust);
-        $('#fear-1').text(player1.emotion.fear);
-        $('#happiness-1').text(player1.emotion.happiness);
-        $('#neutral-1').text(player1.emotion.neutral);
-        $('#sadness-1').text(player1.emotion.sadness);
-        $('#surprise-1').text(player1.emotion.surprise);
+    // player 1 emotion scores displayed from firebase
+    $('#anger-1').text(player1.emotion.anger);
+    $('#disgust-1').text(player1.emotion.disgust);
+    $('#fear-1').text(player1.emotion.fear);
+    $('#happiness-1').text(player1.emotion.happiness);
+    $('#neutral-1').text(player1.emotion.neutral);
+    $('#sadness-1').text(player1.emotion.sadness);
+    $('#surprise-1').text(player1.emotion.surprise);
 
-        // player 2 emotion scores displayed from firebase
-        $('#anger-2').text(player2.emotion.anger);
-        $('#disgust-2').text(player2.emotion.disgust);
-        $('#fear-2').text(player2.emotion.fear);
-        $('#happiness-2').text(player2.emotion.happiness);
-        $('#neutral-2').text(player2.emotion.neutral);
-        $('#sadness-2').text(player2.emotion.sadness);
-        $('#surprise-2').text(player2.emotion.surprise);
+    // player 2 emotion scores displayed from firebase
+    $('#anger-2').text(player2.emotion.anger);
+    $('#disgust-2').text(player2.emotion.disgust);
+    $('#fear-2').text(player2.emotion.fear);
+    $('#happiness-2').text(player2.emotion.happiness);
+    $('#neutral-2').text(player2.emotion.neutral);
+    $('#sadness-2').text(player2.emotion.sadness);
+    $('#surprise-2').text(player2.emotion.surprise);
 
 }
 
@@ -216,19 +220,19 @@ function updateScore() {
 // }
 
 // update scoreboard html from firebase - replaces updateHTML()
-database.ref().on('value', function(snap) {
+database.ref().on('value', function (snap) {
     const wins1 = $('#wins-1');
-        wins1.text(snap.val().player1.wins);
+    wins1.text(snap.val().player1.wins);
     const wins2 = $('#wins-2');
-        wins2.text(snap.val().player2.wins);
+    wins2.text(snap.val().player2.wins);
     const losses1 = $('#losses-1');
-        losses1.text(snap.val().player1.losses);
+    losses1.text(snap.val().player1.losses);
     const losses2 = $('#losses-2');
-        losses2.text(snap.val().player2.losses);
+    losses2.text(snap.val().player2.losses);
 })
 
 function reset() {
-    // allows submit button to be hit again and resets ajax switch 
+    // allows submit button to be hit again and resets ajax switch
     submit = true;
     ajaxSwitch = false;
 }
@@ -237,7 +241,7 @@ function reset() {
 // Main Computation
 //--------------------------------------------------------------------------
 
-//Event handlers to input URL into appropriate player obj & start game 
+//Event handlers to input URL into appropriate player obj & start game
 $(document).on('click', '#submit-1', function (e) {
     e.preventDefault;
     var user1 = $('#user-input-1');
@@ -261,7 +265,7 @@ $(document).on('click', '#submit-1', function (e) {
     image1.attr('src', player2.url);
 
 }).on('click', '#play-button', function (e) {
-    
+
     //sets emotion from dropdown, default one right now is anger
     emotion = $('#emotion-dropdown :selected').text();
     var emotionNotSelected = 'Select an emotion...';
@@ -269,7 +273,7 @@ $(document).on('click', '#submit-1', function (e) {
     // put ajaxSwitch error handling here
     if (go1 && go2 && submit && emotion != emotionNotSelected) {
         initialAjax(ajaxSwitch);
-    }else{
+    } else {
         alert('Please submit two images and select an emotion');
     }
 })

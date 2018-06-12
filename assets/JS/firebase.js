@@ -1,14 +1,14 @@
 
 // Initialize Firebase
-  var config = {
+var config = {
     apiKey: "AIzaSyDoqLPhtslGgaOM5DJj5XoHfcyccYCAUyw",
     authDomain: "face-app-42a2f.firebaseapp.com",
     databaseURL: "https://face-app-42a2f.firebaseio.com",
     projectId: "face-app-42a2f",
     storageBucket: "face-app-42a2f.appspot.com",
     messagingSenderId: "825540843976"
-  };
-  firebase.initializeApp(config);
+};
+firebase.initializeApp(config);
 
 const database = firebase.database();
 const storageRef = firebase.storage().ref();
@@ -18,22 +18,23 @@ var uImageURL1 = undefined;
 var uImageURL2 = undefined;
 
 // display persitent scores
-database.ref().on('value', function(snap) {
+database.ref().on('value', function (snap) {
     const wins1 = $('#wins-1');
-        wins1.text(snap.val().player1.wins);
+    wins1.text(snap.val().player1.wins);
     const wins2 = $('#wins-2');
-        wins2.text(snap.val().player2.wins);
+    wins2.text(snap.val().player2.wins);
     const losses1 = $('#losses-1');
-        losses1.text(snap.val().player1.losses);
+    losses1.text(snap.val().player1.losses);
     const losses2 = $('#losses-2');
-        losses2.text(snap.val().player2.losses);
+    losses2.text(snap.val().player2.losses);
 })
 
 // Uploading files to firebase
 
-$(document).on('click', '#upload-submit-1', function(e) {
+$(document).on('click', '#upload-submit-1', function (e) {
     e.preventDefault;
     go1 = true;
+    $("#image-1").attr('src', 'https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif');
 
     const file1 = $("#upload-1").get(0).files[0];
 
@@ -42,33 +43,49 @@ $(document).on('click', '#upload-submit-1', function(e) {
     const task = imagesRef1.put(file1, metadata1);
 
     const image = storageRef.child('images1.jpg');
-    const urlPromise = image.getDownloadURL();
 
-    urlPromise.then(url => {
-        $("#image-1").attr('src', url);
-        player1.url = url;
-    });
-    
+    setTimeout(getDownloadURL, 2000);
 
-}).on('click', '#upload-submit-2', function(e) {
+    // function getDownloadURL () {
+    //     const urlPromise = image.getDownloadURL();
+    //         urlPromise.then(url => {
+    //         $("#image-1").attr('src', url);
+    //         player1.url = url;
+    // });
+    // };
+
+    task.on('state_changed', function (snap) {
+        const urlPromise = image.getDownloadURL();
+        urlPromise.then(url => {
+            $("#image-1").attr('src', url);
+            player1.url = url;
+        });
+    })
+    $("#image-1").attr('src', 'https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif');
+
+
+}).on('click', '#upload-submit-2', function (e) {
     e.preventDefault;
-    go2 = true;
-    console.log('hi')
+    go2 = true;`a`
+    $("#image-2").attr('src', 'https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif');
+
     // gets uploaded file
     const file2 = $("#upload-2").get(0).files[0];
 
-    // sets metadata
     const metadata2 = { contentType: file2.type };
 
-    // uploads the image
     const task = imagesRef2.put(file2, metadata2);
 
     const image = storageRef.child('images2.jpg');
     const urlPromise = image.getDownloadURL();
 
-    urlPromise.then(url => {
-        $("#image-2").attr('src', url);
-        player2.url = url;
+    setTimeout(getDownloadURL, 2000);
+
+    function getDownloadURL () {
+        const urlPromise = image.getDownloadURL();
+            urlPromise.then(url => {
+            $("#image-2").attr('src', url);
+            player1.url = url;
     });
 
 })
@@ -94,7 +111,7 @@ $(document).on('click', '#upload-submit-1', function(e) {
 //                     sadness: 0,
 //                     surprise: 0,
 //                     wins: 0,
-//                     losses: 0 }           
+//                     losses: 0 }
 //     });
 // }
 
@@ -107,4 +124,3 @@ $(document).on('click', '#upload-submit-1', function(e) {
 
 // Call reset to set player objects, remove this call when we wanting persistence - otherwise starting will overwrite
 // resetDatabase();
-
