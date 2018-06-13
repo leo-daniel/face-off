@@ -252,131 +252,61 @@ function updateScore() {
         losses2.text(snap.val().player2.losses);
     
     });
-
-
 }
 
 
-// if (score1 === score2) {
-//     console.log("tie");
-// } else if (score1 > score2) {
-//     console.log("Player 1 wins");
-//     player1.wins++;
-//     player2.losses++;
-//     console.log("player1 wins", player1);
-//     database.ref().once("value", function (snap) {
-//         database.ref().update({
-//             player1: {
-//                 anger: player1.emotion.anger,
-//                 digsgust: player1.emotion.disgust,
-//                 fear: player1.emotion.fear,
-//                 happiness: player1.emotion.happiness,
-//                 neutral: player1.emotion.neutral,
-//                 sadness: player1.emotion.sadness,
-//                 surprise: player1.emotion.surprise,
-//                 wins: snap.val().player1.wins + 1,
-//                 losses: snap.val().player1.losses + 0
-//             },
-//             player2: {
-//                 anger: player2.emotion.anger,
-//                 digsgust: player2.emotion.disgust,
-//                 fear: player2.emotion.fear,
-//                 happiness: player2.emotion.happiness,
-//                 neutral: player2.emotion.neutral,
-//                 sadness: player2.emotion.sadness,
-//                 surprise: player2.emotion.surprise,
-//                 wins: snap.val().player2.wins + 0,
-//                 losses: snap.val().player2.losses + 1
-//             }
-//         });
-//     });
-// } else {
-//     console.log("Player 2 wins");
-//     player2.wins++;
-//     player1.losses++;
-//     console.log("player2 wins", player2);
-//     database.ref().once("value", function (snap) {
-//         database.ref().update({
-//             player1: {
-//                 anger: player1.emotion.anger,
-//                 digsgust: player1.emotion.disgust,
-//                 fear: player1.emotion.fear,
-//                 happiness: player1.emotion.happiness,
-//                 neutral: player1.emotion.neutral,
-//                 sadness: player1.emotion.sadness,
-//                 surprise: player1.emotion.surprise,
-//                 wins: snap.val().player1.wins + 0,
-//                 losses: snap.val().player1.losses + 1
-//             },
-//             player2: {
-//                 anger: player2.emotion.anger,
-//                 digsgust: player2.emotion.disgust,
-//                 fear: player2.emotion.fear,
-//                 happiness: player2.emotion.happiness,
-//                 neutral: player2.emotion.neutral,
-//                 sadness: player2.emotion.sadness,
-//                 surprise: player2.emotion.surprise,
-//                 wins: snap.val().player2.wins + 1,
-//                 losses: snap.val().player2.losses + 0
-//             }
-//         });
-//     });
-
-//     // player 1 emotion scores displayed from firebase
-//     $("#anger-1").text(player1.emotion.anger);
-//     $("#disgust-1").text(player1.emotion.disgust);
-//     $("#fear-1").text(player1.emotion.fear);
-//     $("#happiness-1").text(player1.emotion.happiness);
-//     $("#neutral-1").text(player1.emotion.neutral);
-//     $("#sadness-1").text(player1.emotion.sadness);
-//     $("#surprise-1").text(player1.emotion.surprise);
-
-//     // player 2 emotion scores displayed from firebase
-//     $("#anger-2").text(player2.emotion.anger);
-//     $("#disgust-2").text(player2.emotion.disgust);
-//     $("#fear-2").text(player2.emotion.fear);
-//     $("#happiness-2").text(player2.emotion.happiness);
-//     $("#neutral-2").text(player2.emotion.neutral);
-//     $("#sadness-2").text(player2.emotion.sadness);
-//     $("#surprise-2").text(player2.emotion.surprise);
-
-// }
-
-// // function updateHTML(player) {
-// //     var wins1 = $('#wins-1');
-// //     wins1.text(player1.wins);
-// //     var wins2 = $('#wins-2');
-// //     wins2.text(player2.wins);
-// //     var losses1 = $('#losses-1');
-// //     losses1.text(player1.losses);
-// //     var losses2 = $('#losses-2');
-// //     losses2.text(player2.losses);
-// // }
-
-// // update scoreboard html from firebase - replaces updateHTML()
-// database.ref().on("value", function (snap) {
-//     const wins1 = $("#wins-1");
-//     wins1.text(snap.val().player1.wins);
-//     const wins2 = $("#wins-2");
-//     wins2.text(snap.val().player2.wins);
-//     const losses1 = $("#losses-1");
-//     losses1.text(snap.val().player1.losses);
-//     const losses2 = $("#losses-2");
-//     losses2.text(snap.val().player2.losses);
-
-// });
 
 function reset() {
     // allows submit button to be hit again and resets ajax switch
     submit = true;
     ajaxSwitch = false;
 
-    // moves through api key array
+    // moves through api key arrayimgSearch = fwl
+
     key++;
 
+    console.log('key iterator', keimgSearch = fwl)
 
-    console.log('key iterator', key, key);
 }
+//--------------------------------------------------------------------------
+// Pixabay
+//--------------------------------------------------------------------------
+$(document).on('click', '#pb-submit', function(e) {
+    e.preventDefault;
+    var imgSearch = $("#pb-search").val().trim();
+    var pbQueryBase = 'https://pixabay.com/api/?key=4635969-302d2d8c430786a51835559ca&q='
+    var pbQuerySearch =  pbQueryBase + imgSearch + '&category=people&image_type=photo&safesearch=true'
+
+    console.log(pbQuerySearch, imgSearch);
+    $.ajax({
+        url: pbQuerySearch,
+        method: "GET",
+        success: postImages
+    });
+    
+    function postImages (response) {
+        var arraylen = response.hits.length;
+        var randomIndex1 = Math.floor(Math.random()*arraylen);
+        var randomImage1 = response.hits[randomIndex1].largeImageURL;
+        $("#image-1").attr('src', randomImage1);
+        var randomIndex2 = Math.floor(Math.random()*arraylen);
+        var randomImage2 = response.hits[randomIndex2].largeImageURL;
+        $("#image-2").attr('src', randomImage2);
+
+    }
+
+
+    // var pbQueryURLtest = 'https://pixabay.com/api/?key=4635969-302d2d8c430786a51835559ca&q=yellow+flowers&image_type=photo'
+ 
+});
+
+
+
+// var pbQueryURL = 
+
+
+
+
 
 //--------------------------------------------------------------------------
 // Main Computation
