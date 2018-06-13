@@ -46,27 +46,21 @@ $(document).on('click', '#upload-submit-1', function (e) {
 
     setTimeout(getDownloadURL, 2000);
 
-    // function getDownloadURL () {
-    //     const urlPromise = image.getDownloadURL();
-    //         urlPromise.then(url => {
-    //         $("#image-1").attr('src', url);
-    //         player1.url = url;
-    // });
-    // };
-
-    task.on('state_changed', function (snap) {
+    function getDownloadURL () {
         const urlPromise = image.getDownloadURL();
-        urlPromise.then(url => {
+            urlPromise.then(url => {
             $("#image-1").attr('src', url);
             player1.url = url;
         });
-    })
+    };
+
+
     $("#image-1").attr('src', 'https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif');
 
 
 }).on('click', '#upload-submit-2', function (e) {
     e.preventDefault;
-    go2 = true;`a`
+    go2 = true;
     $("#image-2").attr('src', 'https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif');
 
     // gets uploaded file
@@ -85,11 +79,10 @@ $(document).on('click', '#upload-submit-1', function (e) {
         const urlPromise = image.getDownloadURL();
             urlPromise.then(url => {
             $("#image-2").attr('src', url);
-            player1.url = url;
-    });
-
-})
-
+            player2.url = url;
+        });
+    }
+});
 
 // Sets object values to 0
 // function resetDatabase() {
