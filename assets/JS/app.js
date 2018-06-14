@@ -148,6 +148,7 @@ function updateScore() {
         console.log("tie");
     } else if (score1 > score2) {
         console.log("Player 1 wins");
+        $("#winModal1").addClass("is-active");
         player1.wins++;
         player2.losses++;
         console.log("player1 wins", player1);
@@ -208,9 +209,9 @@ function updateScore() {
                 }
             });
         });
-    
+
     }
-    
+
         // player 1 emotion scores displayed from firebase
         $("#anger-1").text(player1.emotion.anger);
         $("#disgust-1").text(player1.emotion.disgust);
@@ -219,7 +220,7 @@ function updateScore() {
         $("#neutral-1").text(player1.emotion.neutral);
         $("#sadness-1").text(player1.emotion.sadness);
         $("#surprise-1").text(player1.emotion.surprise);
-    
+
         // player 2 emotion scores displayed from firebase
         $("#anger-2").text(player2.emotion.anger);
         $("#disgust-2").text(player2.emotion.disgust);
@@ -228,8 +229,8 @@ function updateScore() {
         $("#neutral-2").text(player2.emotion.neutral);
         $("#sadness-2").text(player2.emotion.sadness);
         $("#surprise-2").text(player2.emotion.surprise);
-    
-    
+
+
     // update scoreboard html from firebase - replaces updateHTML()
     database.ref().on("value", function (snap) {
         const wins1 = $("#wins-1");
@@ -240,7 +241,7 @@ function updateScore() {
         losses1.text(snap.val().player1.losses);
         const losses2 = $("#losses-2");
         losses2.text(snap.val().player2.losses);
-    
+
     });
 }
 
@@ -320,24 +321,24 @@ $(document)
 //--------------------------------------------------------------------------
 // Modal controls
 //--------------------------------------------------------------------------
-$("#startModal").click(function() {
-  $("#modal1").addClass("is-active");  
+$("#startModal1").click(function() {
+  $("#modal1").addClass("is-active");
 });
 
 $(".delete1").click(function() {
    $("#modal1").removeClass("is-active");
 });
 
-$("#showModal2").click(function() {
-    $("#modal1").removeClass("is-active");  
-    $("#modal2").addClass("is-active");  
+$("#startModal2").click(function() {
+    $("#modal1").removeClass("is-active");
+    $("#modal2").addClass("is-active");
 });
-  
+
 $(".delete2").click(function() {
      $("#modal2").removeClass("is-active");
 });
 
 $("#backModal2").click(function() {
-    $("#modal2").removeClass("is-active");  
-    $("#modal1").addClass("is-active");  
+    $("#modal2").removeClass("is-active");
+    $("#modal1").addClass("is-active");
 });
