@@ -34,7 +34,7 @@ database.ref().on('value', function (snap) {
 $(document).on('click', '#upload-submit-1', function (e) {
     e.preventDefault;
     go1 = true;
-    $("#image-1").attr('src', 'https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif');
+    $("#image-1").attr('src', 'https://upload.wikimedia.org/wikipedia/commondid s/b/b1/Loading_icon.gif');
 
     const file1 = $("#upload-1").get(0).files[0];
 
