@@ -183,6 +183,7 @@ function updateScore() {
         player2.wins++;
         player1.losses++;
         console.log("player2 wins", player2);
+        $("#winModal2").addClass("is-active");
         database.ref().once("value", function (snap) {
             database.ref().update({
                 player1: {
@@ -341,4 +342,14 @@ $(".delete2").click(function() {
 $("#backModal2").click(function() {
     $("#modal2").removeClass("is-active");
     $("#modal1").addClass("is-active");
+});
+
+$(".modal-close").click(function() {
+    $("#winModal1").removeClass("is-active");
+    $("#winModal2").removeClass("is-active");
+});
+
+$(".modal-background").click(function() {
+    $("#winModal1").removeClass("is-active");
+    $("#winModal2").removeClass("is-active");
 });
