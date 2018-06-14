@@ -315,3 +315,29 @@ $(document)
 
         }
     });
+
+
+//--------------------------------------------------------------------------
+// Modal controls
+//--------------------------------------------------------------------------
+$("#startModal").click(function() {
+  $("#modal1").addClass("is-active");  
+});
+
+$(".delete1").click(function() {
+   $("#modal1").removeClass("is-active");
+});
+
+$("#showModal2").click(function() {
+    $("#modal1").removeClass("is-active");  
+    $("#modal2").addClass("is-active");  
+});
+  
+$(".delete2").click(function() {
+     $("#modal2").removeClass("is-active");
+});
+
+$("#backModal2").click(function() {
+    $("#modal2").removeClass("is-active");  
+    $("#modal1").addClass("is-active");  
+});
