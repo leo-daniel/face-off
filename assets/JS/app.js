@@ -313,7 +313,7 @@ $(document)
         if (go1 && go2 && submit && emotion != emotionNotSelected) {
             initialAjax(ajaxSwitch);
         } else {
-            alert('Please submit two images and select an emotion');
+            $("#notReady").addClass("is-active");
 
         }
     });
@@ -339,17 +339,10 @@ $(".delete2").click(function() {
      $("#modal2").removeClass("is-active");
 });
 
-$("#backModal2").click(function() {
-    $("#modal2").removeClass("is-active");
-    $("#modal1").addClass("is-active");
-});
-
 $(".modal-close").click(function() {
-    $("#winModal1").removeClass("is-active");
-    $("#winModal2").removeClass("is-active");
+    $(".modal").removeClass("is-active");
 });
 
 $(".modal-background").click(function() {
-    $("#winModal1").removeClass("is-active");
-    $("#winModal2").removeClass("is-active");
+    $(".modal").removeClass("is-active");
 });
