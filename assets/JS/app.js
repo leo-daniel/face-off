@@ -211,7 +211,7 @@ function updateScore() {
     
     }
     
-          // player 1 emotion scores displayed from firebase
+        // player 1 emotion scores displayed from firebase
         $("#anger-1").text(player1.emotion.anger);
         $("#disgust-1").text(player1.emotion.disgust);
         $("#fear-1").text(player1.emotion.fear);
