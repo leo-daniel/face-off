@@ -253,12 +253,52 @@ function reset() {
     submit = true;
     ajaxSwitch = false;
 
-    // moves through api key array
+    // moves through api key arrayimgSearch = fwl
+
     key++;
 
+    console.log('key iterator', keimgSearch = fwl)
 
-    console.log('key iterator', key, key);
 }
+//--------------------------------------------------------------------------
+// Pixabay
+//--------------------------------------------------------------------------
+$(document).on('click', '#pb-submit', function(e) {
+    e.preventDefault;
+    var imgSearch = $("#pb-search").val().trim();
+    var pbQueryBase = 'https://pixabay.com/api/?key=4635969-302d2d8c430786a51835559ca&q='
+    var pbQuerySearch =  pbQueryBase + imgSearch + '&category=people&image_type=photo&safesearch=true'
+
+    console.log(pbQuerySearch, imgSearch);
+    $.ajax({
+        url: pbQuerySearch,
+        method: "GET",
+        success: postImages
+    });
+    
+    function postImages (response) {
+        var arraylen = response.hits.length;
+        var randomIndex1 = Math.floor(Math.random()*arraylen);
+        var randomImage1 = response.hits[randomIndex1].largeImageURL;
+        $("#image-1").attr('src', randomImage1);
+        var randomIndex2 = Math.floor(Math.random()*arraylen);
+        var randomImage2 = response.hits[randomIndex2].largeImageURL;
+        $("#image-2").attr('src', randomImage2);
+
+    }
+
+
+    // var pbQueryURLtest = 'https://pixabay.com/api/?key=4635969-302d2d8c430786a51835559ca&q=yellow+flowers&image_type=photo'
+ 
+});
+
+
+
+// var pbQueryURL = 
+
+
+
+
 
 //--------------------------------------------------------------------------
 // Main Computation
