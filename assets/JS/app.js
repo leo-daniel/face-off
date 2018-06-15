@@ -148,6 +148,7 @@ function updateScore() {
         console.log("tie");
     } else if (score1 > score2) {
         console.log("Player 1 wins");
+        $("#winModal1").addClass("is-active");
         player1.wins++;
         player2.losses++;
         console.log("player1 wins", player1);
@@ -182,6 +183,7 @@ function updateScore() {
         player2.wins++;
         player1.losses++;
         console.log("player2 wins", player2);
+        $("#winModal2").addClass("is-active");
         database.ref().once("value", function (snap) {
             database.ref().update({
                 player1: {
@@ -208,7 +210,9 @@ function updateScore() {
                 }
             });
         });
-    
+
+    }
+
         // player 1 emotion scores displayed from firebase
         $("#anger-1").text(player1.emotion.anger);
         $("#disgust-1").text(player1.emotion.disgust);
@@ -217,7 +221,7 @@ function updateScore() {
         $("#neutral-1").text(player1.emotion.neutral);
         $("#sadness-1").text(player1.emotion.sadness);
         $("#surprise-1").text(player1.emotion.surprise);
-    
+
         // player 2 emotion scores displayed from firebase
         $("#anger-2").text(player2.emotion.anger);
         $("#disgust-2").text(player2.emotion.disgust);
@@ -226,20 +230,8 @@ function updateScore() {
         $("#neutral-2").text(player2.emotion.neutral);
         $("#sadness-2").text(player2.emotion.sadness);
         $("#surprise-2").text(player2.emotion.surprise);
-    
-    }
-    
-    // function updateHTML(player) {
-    //     var wins1 = $('#wins-1');
-    //     wins1.text(player1.wins);
-    //     var wins2 = $('#wins-2');
-    //     wins2.text(player2.wins);
-    //     var losses1 = $('#losses-1');
-    //     losses1.text(player1.losses);
-    //     var losses2 = $('#losses-2');
-    //     losses2.text(player2.losses);
-    // }
-    
+
+
     // update scoreboard html from firebase - replaces updateHTML()
     database.ref().on("value", function (snap) {
         const wins1 = $("#wins-1");
@@ -250,7 +242,7 @@ function updateScore() {
         losses1.text(snap.val().player1.losses);
         const losses2 = $("#losses-2");
         losses2.text(snap.val().player2.losses);
-    
+
     });
 }
 
@@ -361,7 +353,36 @@ $(document)
         if (go1 && go2 && submit && emotion != emotionNotSelected) {
             initialAjax(ajaxSwitch);
         } else {
-            alert('Please submit two images and select an emotion');
+            $("#notReady").addClass("is-active");
 
         }
     });
+
+
+//--------------------------------------------------------------------------
+// Modal controls
+//--------------------------------------------------------------------------
+$("#startModal1").click(function() {
+  $("#modal1").addClass("is-active");
+});
+
+$(".delete1").click(function() {
+   $("#modal1").removeClass("is-active");
+});
+
+$("#startModal2").click(function() {
+    $("#modal1").removeClass("is-active");
+    $("#modal2").addClass("is-active");
+});
+
+$(".delete2").click(function() {
+     $("#modal2").removeClass("is-active");
+});
+
+$(".modal-close").click(function() {
+    $(".modal").removeClass("is-active");
+});
+
+$(".modal-background").click(function() {
+    $(".modal").removeClass("is-active");
+});
