@@ -53,7 +53,7 @@ var go2 = false;
 //--------------------------------------------------------------------------
 // Functions
 //--------------------------------------------------------------------------
-// need to put error handling for ajax calls
+
 
 
 function initialAjax(ajaxSwitch) {
@@ -61,7 +61,7 @@ function initialAjax(ajaxSwitch) {
 
     //builds api key and api secret
 
-    // Detect - generate face kye
+    // Detect - generate face key. we are using different API keys for the different URLs
     let dBaseURL = "https://api-us.faceplusplus.com/facepp/v3/detect?";
     let dApiKey = "api_key=" + apiKeyArray[key] + "&";
     let dApiSecret = "api_secret=" + apiSecretArray[key] + "&";
@@ -72,12 +72,13 @@ function initialAjax(ajaxSwitch) {
     if (!ajaxSwitch) {
         //uses player 1 url
         dImageURL = "image_url=" + player1.url;
-        console.log(dImageURL);
+        console.log("dImage URL", dImageURL);
     } else {
         //uses player 2 url
         dImageURL = "image_url=" + player2.url;
-        console.log(dImageURL);
+        console.log("dImage URL", dImageURL);
     }
+
 
     dQueryURL = dBaseURL + dApiKey + dApiSecret + dImageURL;
 
@@ -88,9 +89,11 @@ function initialAjax(ajaxSwitch) {
     });
 }
 
+
+
 function handleToken(response) {
     console.log("Handle Token Fired");
-
+    
     //buids api key and api secret
     let aBaseURL = "https://api-us.faceplusplus.com/facepp/v3/face/analyze?";
     let aApiKey = "api_key=" + apiKeyArray[key] + "&";
@@ -100,7 +103,7 @@ function handleToken(response) {
     let aQueryURL = aBaseURL + aApiKey + aApiSecret + aFaceId;
     let attribute = "emotion";
     let aAttribute = "&return_attributes=" + attribute;
-
+    
     faceId = response.faces[0].face_token;
     aFaceId = "&face_tokens=" + faceId;
     aQueryURL = aBaseURL + aApiKey + aApiSecret + aFaceId + aAttribute;
@@ -148,7 +151,6 @@ function updateScore() {
         console.log("tie");
     } else if (score1 > score2) {
         console.log("Player 1 wins");
-        $("#winModal1").addClass("is-active");
         player1.wins++;
         player2.losses++;
         console.log("player1 wins", player1);
@@ -183,7 +185,6 @@ function updateScore() {
         player2.wins++;
         player1.losses++;
         console.log("player2 wins", player2);
-        $("#winModal2").addClass("is-active");
         database.ref().once("value", function (snap) {
             database.ref().update({
                 player1: {
@@ -210,10 +211,10 @@ function updateScore() {
                 }
             });
         });
-
+    
     }
-
-        // player 1 emotion scores displayed from firebase
+    
+        // player 1 emotion scores displayed from local
         $("#anger-1").text(player1.emotion.anger);
         $("#disgust-1").text(player1.emotion.disgust);
         $("#fear-1").text(player1.emotion.fear);
@@ -221,7 +222,7 @@ function updateScore() {
         $("#neutral-1").text(player1.emotion.neutral);
         $("#sadness-1").text(player1.emotion.sadness);
         $("#surprise-1").text(player1.emotion.surprise);
-
+    
         // player 2 emotion scores displayed from firebase
         $("#anger-2").text(player2.emotion.anger);
         $("#disgust-2").text(player2.emotion.disgust);
@@ -230,8 +231,8 @@ function updateScore() {
         $("#neutral-2").text(player2.emotion.neutral);
         $("#sadness-2").text(player2.emotion.sadness);
         $("#surprise-2").text(player2.emotion.surprise);
-
-
+    
+    
     // update scoreboard html from firebase - replaces updateHTML()
     database.ref().on("value", function (snap) {
         const wins1 = $("#wins-1");
@@ -242,7 +243,7 @@ function updateScore() {
         losses1.text(snap.val().player1.losses);
         const losses2 = $("#losses-2");
         losses2.text(snap.val().player2.losses);
-
+    
     });
 }
 
@@ -253,52 +254,12 @@ function reset() {
     submit = true;
     ajaxSwitch = false;
 
-    // moves through api key arrayimgSearch = fwl
-
+    // moves through api key array
     key++;
 
-    console.log('key iterator', keimgSearch = fwl)
 
+    console.log('key iterator', key, key);
 }
-//--------------------------------------------------------------------------
-// Pixabay
-//--------------------------------------------------------------------------
-$(document).on('click', '#pb-submit', function(e) {
-    e.preventDefault;
-    var imgSearch = $("#pb-search").val().trim();
-    var pbQueryBase = 'https://pixabay.com/api/?key=4635969-302d2d8c430786a51835559ca&q='
-    var pbQuerySearch =  pbQueryBase + imgSearch + '&category=people&image_type=photo&safesearch=true'
-
-    console.log(pbQuerySearch, imgSearch);
-    $.ajax({
-        url: pbQuerySearch,
-        method: "GET",
-        success: postImages
-    });
-    
-    function postImages (response) {
-        var arraylen = response.hits.length;
-        var randomIndex1 = Math.floor(Math.random()*arraylen);
-        var randomImage1 = response.hits[randomIndex1].largeImageURL;
-        $("#image-1").attr('src', randomImage1);
-        var randomIndex2 = Math.floor(Math.random()*arraylen);
-        var randomImage2 = response.hits[randomIndex2].largeImageURL;
-        $("#image-2").attr('src', randomImage2);
-
-    }
-
-
-    // var pbQueryURLtest = 'https://pixabay.com/api/?key=4635969-302d2d8c430786a51835559ca&q=yellow+flowers&image_type=photo'
- 
-});
-
-
-
-// var pbQueryURL = 
-
-
-
-
 
 //--------------------------------------------------------------------------
 // Main Computation
@@ -308,6 +269,7 @@ $(document).on('click', '#pb-submit', function(e) {
 $(document)
     .on("click", "#submit-1", function (e) {
         e.preventDefault;
+        //sets player html
         var user1 = $("#user-input-1");
         var userURL = user1.val();
         player1.url = userURL;
@@ -319,6 +281,7 @@ $(document)
     })
     .on("click", "#submit-2", function (e) {
         e.preventDefault;
+        //sets player html
         var user2 = $("#user-input-2");
         var userURL = user2.val();
         player2.url = userURL;
@@ -329,6 +292,7 @@ $(document)
         image1.attr("src", player2.url);
     })
     .on("click", "#play-button", function (e) {
+        e.preventDefault;
         //sets emotion from dropdown, default one right now is anger
         emotion = $("#emotion-dropdown :selected").text();
 
@@ -336,14 +300,6 @@ $(document)
         if (key === apiKeyArray.length) {
             key = 0;
         };
-
-
-        //   // put ajaxSwitch error handling here
-        //   if (go1 && go2 && submit) {
-        //     console.log('key', key );
-        //     initialAjax(ajaxSwitch);
-        //   } else {
-        //     alert("Be-Boop it looks like you did not submit two URLs");
 
         //sets emotion from dropdown, default one right now is anger
         emotion = $('#emotion-dropdown :selected').text();
@@ -353,36 +309,98 @@ $(document)
         if (go1 && go2 && submit && emotion != emotionNotSelected) {
             initialAjax(ajaxSwitch);
         } else {
-            $("#notReady").addClass("is-active");
+            alert('Please submit two images and select an emotion');
 
         }
     });
 
+    //handles ajax error
 
-//--------------------------------------------------------------------------
-// Modal controls
-//--------------------------------------------------------------------------
-$("#startModal1").click(function() {
-  $("#modal1").addClass("is-active");
-});
-
-$(".delete1").click(function() {
-   $("#modal1").removeClass("is-active");
-});
-
-$("#startModal2").click(function() {
-    $("#modal1").removeClass("is-active");
-    $("#modal2").addClass("is-active");
-});
-
-$(".delete2").click(function() {
-     $("#modal2").removeClass("is-active");
-});
-
-$(".modal-close").click(function() {
-    $(".modal").removeClass("is-active");
-});
-
-$(".modal-background").click(function() {
-    $(".modal").removeClass("is-active");
-});
+    $(document).ajaxError(function(){
+    
+        new Noty({
+            
+            text: 'Woah Ajax Error!',
+            theme: 'sunset',
+      
+            animation: {
+                open: function (promise) {
+                    var n = this;
+                    var Timeline = new mojs.Timeline();
+                    var body = new mojs.Html({
+                        el        : n.barDom,
+                        x         : {500: 0, delay: 0, duration: 500, easing: 'elastic.out'},
+                        isForce3d : true,
+                        onComplete: function () {
+                            promise(function(resolve) {
+                                resolve();
+                            })
+                        }
+                    });
+        
+                    var parent = new mojs.Shape({
+                        parent: n.barDom,
+                        width      : 200,
+                        height     : n.barDom.getBoundingClientRect().height,
+                        radius     : 0,
+                        x          : {[150]: -150},
+                        duration   : 1.2 * 500,
+                        isShowStart: true
+                    });
+        
+                    n.barDom.style['overflow'] = 'visible';
+                    parent.el.style['overflow'] = 'hidden';
+        
+                    var burst = new mojs.Burst({
+                        parent  : parent.el,
+                        count   : 10,
+                        top     : n.barDom.getBoundingClientRect().height + 75,
+                        degree  : 90,
+                        radius  : 75,
+                        angle   : {[-90]: 40},
+                        children: {
+                            fill     : '#EBD761',
+                            delay    : 'stagger(500, -50)',
+                            radius   : 'rand(8, 25)',
+                            direction: -1,
+                            isSwirl  : true
+                        }
+                    });
+        
+                    var fadeBurst = new mojs.Burst({
+                        parent  : parent.el,
+                        count   : 2,
+                        degree  : 0,
+                        angle   : 75,
+                        radius  : {0: 100},
+                        top     : '90%',
+                        children: {
+                            fill     : '#EBD761',
+                            pathScale: [.65, 1],
+                            radius   : 'rand(12, 15)',
+                            direction: [-1, 1],
+                            delay    : .8 * 500,
+                            isSwirl  : true
+                        }
+                    });
+        
+                    Timeline.add(body, burst, fadeBurst, parent);
+                    Timeline.play();
+                },
+                close: function (promise) {
+                    var n = this;
+                    new mojs.Html({
+                        el        : n.barDom,
+                        x         : {0: 500, delay: 10, duration: 500, easing: 'cubic.out'},
+                        skewY     : {0: 10, delay: 10, duration: 500, easing: 'cubic.out'},
+                        isForce3d : true,
+                        onComplete: function () {
+                            promise(function(resolve) {
+                                resolve();
+                            })
+                        }
+                    }).play();
+                }
+            }
+        }).show();
+    })
