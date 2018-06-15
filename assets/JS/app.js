@@ -280,20 +280,19 @@ function player2Ready() {
 //--------------------------------------------------------------------------
 // Pixabay
 //--------------------------------------------------------------------------
-$(document).on('click', '#pb-submit', function(e) {
+$(document).on('click', '#pb-submit1', function(e) {
     e.preventDefault;
-    var imgSearch = $("#pb-search").val().trim();
+    var imgSearch1 = $("#pb-search1").val().trim();
     var pbQueryBase = 'https://pixabay.com/api/?key=4635969-302d2d8c430786a51835559ca&q='
-    var pbQuerySearch =  pbQueryBase + imgSearch + '&category=people&image_type=photo&safesearch=true'
+    var pbQuerySearch1=  pbQueryBase + imgSearch1 + '&category=people&image_type=photo&safesearch=true'
 
-    console.log(pbQuerySearch, imgSearch);
     $.ajax({
-        url: pbQuerySearch,
+        url: pbQuerySearch1,
         method: "GET",
-        success: postImages
+        success: postImages1
     });
     
-    function postImages (response) {
+    function postImages1 (response) {
         var arraylen = response.hits.length;
         var randomIndex1 = Math.floor(Math.random()*arraylen);
         var randomImage1 = response.hits[randomIndex1].largeImageURL;
@@ -301,20 +300,47 @@ $(document).on('click', '#pb-submit', function(e) {
         player1.url = randomImage1;
         go1 = true;
         player1Ready();
+    }
+
+       // var randomIndex2 = Math.floor(Math.random()*arraylen);
+        // var randomImage2 = response.hits[randomIndex2].largeImageURL;
+        // $("#image-2").attr('src', randomImage2);
+        // player2.url = randomImage2;
+        // go2 = true;
+        // player2Ready();
+ 
+});
+
+$(document).on('click', '#pb-submit2', function(e) {
+    e.preventDefault;
+    var imgSearch2 = $("#pb-search2").val().trim();
+    var pbQueryBase = 'https://pixabay.com/api/?key=4635969-302d2d8c430786a51835559ca&q='
+    var pbQuerySearch2=  pbQueryBase + imgSearch2 + '&category=people&image_type=photo&safesearch=true'
+
+    $.ajax({
+        url: pbQuerySearch2,
+        method: "GET",
+        success: postImages2
+    });
+    
+    function postImages2 (response) {
+        var arraylen = response.hits.length;
         var randomIndex2 = Math.floor(Math.random()*arraylen);
         var randomImage2 = response.hits[randomIndex2].largeImageURL;
         $("#image-2").attr('src', randomImage2);
         player2.url = randomImage2;
         go2 = true;
         player2Ready();
-
     }
 
-
-    // var pbQueryURLtest = 'https://pixabay.com/api/?key=4635969-302d2d8c430786a51835559ca&q=yellow+flowers&image_type=photo'
+       // var randomIndex2 = Math.floor(Math.random()*arraylen);
+        // var randomImage2 = response.hits[randomIndex2].largeImageURL;
+        // $("#image-2").attr('src', randomImage2);
+        // player2.url = randomImage2;
+        // go2 = true;
+        // player2Ready();
  
 });
-
 
 
 // var pbQueryURL = 
