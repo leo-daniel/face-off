@@ -43,10 +43,6 @@
 </head>
 
 <body>
-    <div class="form-group">
-        <input id="pb-search" type="text" placeholder="Image search">
-        <button id="pb-submit" class="btn btn-outline-secondary" type="button">Submit</button>
-    </div>
   <div class="container text-center">
     <div class="row justify-content-center my-3">
       <div class="col-6">
@@ -78,7 +74,7 @@
       <div class="modal-card animated bounceInLeft">
         <header class="modal-card-head">
           <p class="modal-card-title">Player 1</p>
-          <button class="delete1" aria-label="close">X</button>
+          <button class="button is-primary closeModal">X</button>
         </header>
         <section class="modal-card-body">
           <!-- Content ... -->
@@ -100,8 +96,9 @@
           </div>
           <img id="image-1" class="border" src="http://via.placeholder.com/200" alt="Player 1 Image" height="200px" width="200px">
         </section>
-        <footer class="modal-card-foot">
-          <button class="button is-success" id="showModal2">Next</button>
+        <footer class="modal-card-foot justify-content-center">
+            <input id="pb-search" type="text" class="input is-primary is-medium" placeholder="Or search for a random face!">
+            <button id="pb-submit" class="button is-primary is-small" type="button">Submit</button>
         </footer>
       </div>
     </div>
@@ -112,7 +109,7 @@
       <div class="modal-card animated bounceInRight">
         <header class="modal-card-head">
           <p class="modal-card-title">Player 2</p>
-          <button class="delete2" aria-label="close">X</button>
+          <button class="button is-primary closeModal">X</button>
         </header>
         <section class="modal-card-body">
           <!-- Content ... -->
@@ -134,9 +131,9 @@
           </div>
           <img id="image-2" class="border" src="http://via.placeholder.com/200" alt="Player 2 Image" height="200px" width="200px">
         </section>
-        <footer class="modal-card-foot">
-          <button class="button" id="backModal2">Back</button>
-          <button class="button is-success" id="showModal2">Next</button>
+        <footer class="modal-card-foot justify-content-center">
+                <input id="pb-search" type="text" class="input is-primary is-medium" placeholder="Or search for a random face!">
+                <button id="pb-submit" class="button is-primary is-small" type="button">Submit</button>
         </footer>
       </div>
     </div>
@@ -146,11 +143,11 @@
       <div class="col-6">
 
         <div class="col-12">
-          <a class="button is-primary is-large modal-button" data-target="modal-bis" id="startModal1">Player 1 Start</a>
+          <a class="button is-light is-large modal-button" data-target="modal-bis" id="startModal1">Player 1 Start</a>
         </div>
 
         <p class='my-3'>
-          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#player-scores-1" aria-expanded="false"
+          <button class="button is-danger" type="button" data-toggle="collapse" data-target="#player-scores-1" aria-expanded="false"
             aria-controls="collapseExample">
             Player 1 Scores ↓
           </button>
@@ -179,11 +176,11 @@
       <div class="col-6">
 
         <div class="col-12">
-          <a class="button is-primary is-large modal-button" data-target="modal-bis" id="startModal2">Player 2 Start</a>
+          <a class="button is-light is-large modal-button" data-target="modal-bis" id="startModal2">Player 2 Start</a>
         </div>
 
         <p class='my-3'>
-          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#player-scores-2" aria-expanded="false"
+          <button class="button is-danger" type="button" data-toggle="collapse" data-target="#player-scores-2" aria-expanded="false"
             aria-controls="collapseExample">
             Player 2 Scores ↓
           </button>
@@ -277,8 +274,8 @@
   <!-- PLAYER 1 WIN MODAL -->
   <div class="modal" id="winModal1">
     <div class="modal-background"></div>
-    <div class="modal-content">
-      <h1>PLAYER 1 WINS</h1>
+    <div class="modal-content text-center">
+      <h1>Congratualtions Player 1! You win this Face Off!</h1>
     </div>
     <button class="modal-close is-large" aria-label="close"></button>
   </div>
@@ -286,8 +283,8 @@
   <!-- PLAYER 2 WIN MODAL -->
   <div class="modal" id="winModal2">
     <div class="modal-background"></div>
-    <div class="modal-content">
-      <h1>PLAYER 2 WINS</h1>
+    <div class="modal-content text-center">
+      <h1>Congratulations Player 2! You win this Face Off!</h1>
     </div>
     <button class="modal-close is-large" aria-label="close"></button>
   </div>
@@ -306,7 +303,7 @@
   <script src="assets/JS/firebase.js"></script>
   <script src="assets/JS/app.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.js"></script>
-  <script src="http://cdn.jsdelivr.net/mojs/latest/mo.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/mojs/latest/mo.min.js"></script>
 
 </body>
 
