@@ -37,7 +37,9 @@ $(document).on('click', '#upload-submit-1', function (e) {
 
     const file1 = $("#upload-1").get(0).files[0];
 
-    const metadata1 = { contentType: file1.type };
+    const metadata1 = {
+        contentType: file1.type
+    };
 
     const task = imagesRef1.put(file1, metadata1);
 
@@ -45,9 +47,9 @@ $(document).on('click', '#upload-submit-1', function (e) {
 
     setTimeout(getDownloadURL, 2000);
 
-    function getDownloadURL () {
+    function getDownloadURL() {
         const urlPromise = image.getDownloadURL();
-            urlPromise.then(url => {
+        urlPromise.then(url => {
             $("#image-1").attr('src', url);
             player1.url = url;
             player1Ready();
@@ -66,7 +68,9 @@ $(document).on('click', '#upload-submit-1', function (e) {
     // gets uploaded file
     const file2 = $("#upload-2").get(0).files[0];
 
-    const metadata2 = { contentType: file2.type };
+    const metadata2 = {
+        contentType: file2.type
+    };
 
     const task = imagesRef2.put(file2, metadata2);
 
@@ -75,9 +79,9 @@ $(document).on('click', '#upload-submit-1', function (e) {
 
     setTimeout(getDownloadURL, 2000);
 
-    function getDownloadURL () {
+    function getDownloadURL() {
         const urlPromise = image.getDownloadURL();
-            urlPromise.then(url => {
+        urlPromise.then(url => {
             $("#image-2").attr('src', url);
             player2.url = url;
             player2Ready();
