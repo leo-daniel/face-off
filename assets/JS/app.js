@@ -484,7 +484,7 @@ $(document)
                 }
             }).show();
 
-        }
+        
         } else {
             new Noty({
         
