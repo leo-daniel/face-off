@@ -260,41 +260,87 @@ function reset() {
 
     key++;
 
-    console.log('key iterator', keimgSearch = fwl)
+    // console.log('key iterator', keimgSearch = fwl)
 
+}
+
+
+// Changes buttons to ready state after images have been uploaded 
+function player1Ready() {
+    $('#startModal1').text('Player 1 Ready!')
+                     .removeClass('is-light')
+                     .addClass('is-success');
+}
+
+function player2Ready() {
+    $('#startModal2').text('Player 2 Ready!')
+                     .removeClass('is-light')
+                     .addClass('is-success');
 }
 //--------------------------------------------------------------------------
 // Pixabay
 //--------------------------------------------------------------------------
-$(document).on('click', '#pb-submit', function(e) {
+$(document).on('click', '#pb-submit1', function(e) {
     e.preventDefault;
-    var imgSearch = $("#pb-search").val().trim();
+    var imgSearch1 = $("#pb-search1").val().trim();
     var pbQueryBase = 'https://pixabay.com/api/?key=4635969-302d2d8c430786a51835559ca&q='
-    var pbQuerySearch =  pbQueryBase + imgSearch + '&category=people&image_type=photo&safesearch=true'
+    var pbQuerySearch1=  pbQueryBase + imgSearch1 + '&category=people&image_type=photo&safesearch=true'
 
-    console.log(pbQuerySearch, imgSearch);
     $.ajax({
-        url: pbQuerySearch,
+        url: pbQuerySearch1,
         method: "GET",
-        success: postImages
+        success: postImages1
     });
     
-    function postImages (response) {
+    function postImages1 (response) {
         var arraylen = response.hits.length;
         var randomIndex1 = Math.floor(Math.random()*arraylen);
         var randomImage1 = response.hits[randomIndex1].largeImageURL;
         $("#image-1").attr('src', randomImage1);
-        var randomIndex2 = Math.floor(Math.random()*arraylen);
-        var randomImage2 = response.hits[randomIndex2].largeImageURL;
-        $("#image-2").attr('src', randomImage2);
-
+        player1.url = randomImage1;
+        go1 = true;
+        player1Ready();
     }
 
-
-    // var pbQueryURLtest = 'https://pixabay.com/api/?key=4635969-302d2d8c430786a51835559ca&q=yellow+flowers&image_type=photo'
+       // var randomIndex2 = Math.floor(Math.random()*arraylen);
+        // var randomImage2 = response.hits[randomIndex2].largeImageURL;
+        // $("#image-2").attr('src', randomImage2);
+        // player2.url = randomImage2;
+        // go2 = true;
+        // player2Ready();
  
 });
 
+$(document).on('click', '#pb-submit2', function(e) {
+    e.preventDefault;
+    var imgSearch2 = $("#pb-search2").val().trim();
+    var pbQueryBase = 'https://pixabay.com/api/?key=4635969-302d2d8c430786a51835559ca&q='
+    var pbQuerySearch2=  pbQueryBase + imgSearch2 + '&category=people&image_type=photo&safesearch=true'
+
+    $.ajax({
+        url: pbQuerySearch2,
+        method: "GET",
+        success: postImages2
+    });
+    
+    function postImages2 (response) {
+        var arraylen = response.hits.length;
+        var randomIndex2 = Math.floor(Math.random()*arraylen);
+        var randomImage2 = response.hits[randomIndex2].largeImageURL;
+        $("#image-2").attr('src', randomImage2);
+        player2.url = randomImage2;
+        go2 = true;
+        player2Ready();
+    }
+
+       // var randomIndex2 = Math.floor(Math.random()*arraylen);
+        // var randomImage2 = response.hits[randomIndex2].largeImageURL;
+        // $("#image-2").attr('src', randomImage2);
+        // player2.url = randomImage2;
+        // go2 = true;
+        // player2Ready();
+ 
+});
 
 
 // var pbQueryURL = 
@@ -315,6 +361,9 @@ $(document)
         var userURL = user1.val();
         player1.url = userURL;
         go1 = true;
+        if (userURL !== '') {
+            player1Ready();
+        }
 
         //puts images in boxes
         var image1 = $("#image-1");
@@ -326,7 +375,9 @@ $(document)
         var userURL = user2.val();
         player2.url = userURL;
         go2 = true;
-
+        if (userURL !== '') {
+            player2Ready();
+        }
         //puts images in boxes
         var image1 = $("#image-2");
         image1.attr("src", player2.url);
@@ -348,7 +399,91 @@ $(document)
         if (go1 && go2 && submit && emotion != emotionNotSelected) {
             initialAjax(ajaxSwitch);
         } else {
-            $("#notReady").addClass("is-active");
+            new Noty({
+        
+                text: ' Woah there! Please submit images for players and select an emotion!',
+                theme: 'sunset',
+          
+                animation: {
+                    open: function (promise) {
+                        var n = this;
+                        var Timeline = new mojs.Timeline();
+                        var body = new mojs.Html({
+                            el        : n.barDom,
+                            x         : {500: 0, delay: 0, duration: 500, easing: 'elastic.out'},
+                            isForce3d : true,
+                            onComplete: function () {
+                                promise(function(resolve) {
+                                    resolve();
+                                })
+                            }
+                        });
+            
+                        var parent = new mojs.Shape({
+                            parent: n.barDom,
+                            width      : 200,
+                            height     : n.barDom.getBoundingClientRect().height,
+                            radius     : 0,
+                            x          : {[150]: -150},
+                            duration   : 1.2 * 500,
+                            isShowStart: true
+                        });
+            
+                        n.barDom.style['overflow'] = 'visible';
+                        parent.el.style['overflow'] = 'hidden';
+            
+                        var burst = new mojs.Burst({
+                            parent  : parent.el,
+                            count   : 10,
+                            top     : n.barDom.getBoundingClientRect().height + 75,
+                            degree  : 90,
+                            radius  : 75,
+                            angle   : {[-90]: 40},
+                            children: {
+                                fill     : '#EBD761',
+                                delay    : 'stagger(500, -50)',
+                                radius   : 'rand(8, 25)',
+                                direction: -1,
+                                isSwirl  : true
+                            }
+                        });
+            
+                        var fadeBurst = new mojs.Burst({
+                            parent  : parent.el,
+                            count   : 2,
+                            degree  : 0,
+                            angle   : 75,
+                            radius  : {0: 100},
+                            top     : '90%',
+                            children: {
+                                fill     : '#EBD761',
+                                pathScale: [.65, 1],
+                                radius   : 'rand(12, 15)',
+                                direction: [-1, 1],
+                                delay    : .8 * 500,
+                                isSwirl  : true
+                            }
+                        });
+            
+                        Timeline.add(body, burst, fadeBurst, parent);
+                        Timeline.play();
+                    },
+                    close: function (promise) {
+                        var n = this;
+                        new mojs.Html({
+                            el        : n.barDom,
+                            x         : {0: 500, delay: 10, duration: 500, easing: 'cubic.out'},
+                            skewY     : {0: 10, delay: 10, duration: 500, easing: 'cubic.out'},
+                            isForce3d : true,
+                            onComplete: function () {
+                                promise(function(resolve) {
+                                    resolve();
+                                })
+                            }
+                        }).play();
+                    }
+                }
+            }).show();
 
         }
     });
@@ -374,15 +509,13 @@ $(".delete2").click(function() {
      $("#modal2").removeClass("is-active");
 });
 
-$(".modal-close").click(function() {
-    $(".modal").removeClass("is-active");
-});
-
 $(".modal-background").click(function() {
     $(".modal").removeClass("is-active");
 });
 
-
+$(".closeModal").click(function() {
+    $(".modal").removeClass("is-active");
+});
 
 //--------------------------------------------------------------------------
 // ajax error handling

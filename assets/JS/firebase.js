@@ -50,6 +50,7 @@ $(document).on('click', '#upload-submit-1', function (e) {
             urlPromise.then(url => {
             $("#image-1").attr('src', url);
             player1.url = url;
+            player1Ready();
         });
     };
 
@@ -79,6 +80,7 @@ $(document).on('click', '#upload-submit-1', function (e) {
             urlPromise.then(url => {
             $("#image-2").attr('src', url);
             player2.url = url;
+            player2Ready();
         });
     }
 });
