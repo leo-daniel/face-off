@@ -42,9 +42,14 @@
     <title>Face-Off!</title>
   </head>
 
+  <div class="text-center my-0">
+      <img src="assets/images/logo.png" alt="Face-Off Logo" height="200px" width="400px" class="my-0">
+
+  </div>
+
   <body>
     <div class="container text-center">
-      <div class="row justify-content-center my-3">
+      <div class="row justify-content-center mb-3">
         <div class="col-6">
           <div class="input-group mb-3">
             <div class="input-group-prepend">
@@ -74,7 +79,7 @@
         <div class="modal-card animated bounceInLeft">
           <header class="modal-card-head">
             <p class="modal-card-title">Player 1</p>
-            <button class="button is-primary closeModal">X</button>
+            <button class="button is-danger closeModal">X</button>
           </header>
           <section class="modal-card-body">
             <!-- Content ... -->
@@ -94,11 +99,11 @@
                 <button id="upload-submit-1" class="btn btn-outline-secondary" type="button">Upload</button>
               </div>
             </div>
-            <img id="image-1" class="border" src="http://via.placeholder.com/200" alt="Player 1 Image" height="200px" width="200px">
+            <img id="image-1" class="border" src="assets/images/placeholder.png" alt="Player 1 Image" height="200px" width="200px">
           </section>
           <footer class="modal-card-foot justify-content-center">
-            <input id="pb-search1" type="text" class="input is-primary is-medium" placeholder="Or search for a random face!">
-            <button id="pb-submit1" class="button is-primary" type="button">Find</button>
+            <input id="pb-search1" type="text" class="input is-info is-medium" placeholder="Or search for a random face!">
+            <button id="pb-submit1" class="button is-info" type="button">Find</button>
           </footer>
         </div>
       </div>
@@ -109,7 +114,7 @@
         <div class="modal-card animated bounceInRight">
           <header class="modal-card-head">
             <p class="modal-card-title">Player 2</p>
-            <button class="button is-primary closeModal">X</button>
+            <button class="button is-danger closeModal">X</button>
           </header>
           <section class="modal-card-body">
             <!-- Content ... -->
@@ -129,11 +134,11 @@
                 <button id="upload-submit-2" class="btn btn-outline-secondary" type="button">Upload</button>
               </div>
             </div>
-            <img id="image-2" class="border" src="http://via.placeholder.com/200" alt="Player 2 Image" height="200px" width="200px">
+            <img id="image-2" class="border" src="assets/images/placeholder.png" alt="Player 2 Image" height="200px" width="200px">
           </section>
           <footer class="modal-card-foot justify-content-center">
-            <input id="pb-search2" type="text" class="input is-primary is-medium" placeholder="Or search for a random face!">
-            <button id="pb-submit2" class="button is-primary" type="button">Find</button>
+            <input id="pb-search2" type="text" class="input is-info is-medium" placeholder="Or search for a random face!">
+            <button id="pb-submit2" class="button is-info" type="button">Find</button>
           </footer>
         </div>
       </div>
@@ -274,7 +279,7 @@
     <div class="modal" id="winModal1">
       <div class="modal-background"></div>
       <div class="modal-content text-center animated bounceInDown">
-        <h1>Congratualtions Player 1! You win this Face Off!</h1>
+        <img src="assets/images/winner-1.png" alt="Player 1 wins!">
       </div>
       <button class="modal-close is-large" aria-label="close"></button>
     </div>
@@ -283,7 +288,7 @@
     <div class="modal" id="winModal2">
       <div class="modal-background"></div>
       <div class="modal-content text-center animated bounceInDown">
-        <h1>Congratulations Player 2! You win this Face Off!</h1>
+        <img src="assets/images/winner-2.png" alt="Player 2 wins!">
       </div>
       <button class="modal-close is-large" aria-label="close"></button>
     </div>
