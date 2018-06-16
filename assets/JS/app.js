@@ -361,7 +361,9 @@ $(document)
         var userURL = user1.val();
         player1.url = userURL;
         go1 = true;
-        player1Ready();
+        if (userURL !== '') {
+            player1Ready();
+        }
 
         //puts images in boxes
         var image1 = $("#image-1");
@@ -373,8 +375,9 @@ $(document)
         var userURL = user2.val();
         player2.url = userURL;
         go2 = true;
-        player2Ready();
-
+        if (userURL !== '') {
+            player2Ready();
+        }
         //puts images in boxes
         var image1 = $("#image-2");
         image1.attr("src", player2.url);
