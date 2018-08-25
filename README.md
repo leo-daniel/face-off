@@ -24,5 +24,4 @@ Open `index.html`
 * Jordan Miller
 * Richard Merino
 
-/assets/Images/face-off-screenshot.png
-![Face-Off-Screenshot](/assets/Images/face-off-screenshot.png)
+![Face-Off-Screenshot](/assets/images/face-off-screenshot.png)
