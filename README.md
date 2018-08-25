@@ -1,57 +1,27 @@
-# Face-Off Web App
+# Faceoff
 
-## Coding Requirements
+Faceoff is a game of emotions. Each player submits a photo of a person's face. Their photos are then evaluated by the Face++ API, an application that analyzes faces and outputs several data points, including human emotions (happiness, anger, sadness, etc.). The players agree on an emotion to analyze, and whichever photo Face++ determines to hold a higher percentage of wins.
 
-### **Must:**
+## Getting Started
 
-  1. use at least two APIs
+`git clone git@github.com:YOURFORK/face-off.git`
 
-  2. use AJAX to pull data
+Open `index.html`
 
-  3. utilize at least one new library or technology that we haven’t discussed
+## Built With
 
-  4. have a polished frontend / UI
+* Firebase - Our backend database
+* Bootstrap - CSS Framework
+* Face++ - Facial Recongition API
+* SASS - For stylesheets
+* NOTY - Animations
 
-  5. meet good quality coding standards (indentation, scoping, naming) 
 
-  6. NOT use alerts, confirms, or prompts (look into modals!)
+## Authors
 
-  7. have some sort of repeating element (table, columns, etc)
+* Andrew Bass
+* Leo Daniel
+* Jordan Miller
+* Richard Merino
 
-  8. use Bootstrap or Alternative CSS Framework
-
-  9. be Deployed (Github Pages)
-
-  10. have User Input Validation
-
-  ### Stick to APIs that do all of the following:
-
-  - Allows CORS
-  - Simple or no authentication
-  - JSON response returned
-  - Well documented         
-
-## Coding – Nice To Haves
-
-- Utilize Firebase for Persistent Data Storage (Consider this basically a requirement).
-- Mobile Responsive
-- Use an alternative CSS framework like Materialize
-
-## Scoring Metrics
-
-- Concept 
-- Design
-- Functionality
-- Collaboration
-- Presentation
-
-## Potential Awards
-
-- Most Awe-Inspiring
-- Most Useful
-- Most Creative
-- Best Use of Tech
-- Best UI/UX
-- Most Hilarious
-- Most Disruptive
-- Most Socially Conscious
+/assets/Images/face-off-screenshot.png
