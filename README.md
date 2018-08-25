@@ -25,3 +25,4 @@ Open `index.html`
 * Richard Merino
 
 /assets/Images/face-off-screenshot.png
+![Face-Off-Screenshot](/assets/Images/face-off-screenshot.png)
